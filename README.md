@@ -84,21 +84,58 @@ Visualizations using Matplotlib and Seaborn:
 
 ### Insights
 
-Commodities with the highest average price and volume.
+Top Commodities by Traded Volume
 
-Most frequently traded currencies.
+Shows which commodities dominate total traded volume.
 
-Patterns in trade periodicity across commodities and traders.
+df.groupby("Commodity")["Volume"].sum()
 
-Top traders by trade volume.
+### 1. Average Price per Commodity
 
-Correlations between commodities and traders in trade frequency.
+Highlights average pricing trends for each commodity.
+
+```
+df.groupby("Commodity")["Price"].mean()
+```
+
+### 2. Trades by Currency
+
+Breakdown of trades by currency (GBP, USD, EUR).
+
+```
+df["Currency"].value_counts()
+```
+
+### 3. Trades by Periodicity
+
+Distribution of trades by frequency (Daily, Weekly, Monthly).
+
+```
+df["Periodicity"].value_counts()
+```
+
+### 4. Top 5 Commodities by Volume
+
+```Identifies the five most traded commodities by total volume.
+
+top5_volume = df.groupby("Commodity")["Volume"].sum().sort_values(ascending=False).head(5)
+print(top5_volume)
+```
+### 5. Top Commodities by Traded Volume
+
+Shows which commodities dominate total traded volume.
+
+```
+df.groupby("Commodity")["Volume"].sum()
+```
 
 ## How to Run
 
   Clone the repository:
 
-```git clone <repository_url>```
+```
+git clone <repository_url>
+```
 
 Open the notebooks in the``` data_analysis``` folder and run sequentially to reproduce the analysis and visualizations.
 
